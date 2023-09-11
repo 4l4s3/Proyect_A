@@ -1,8 +1,15 @@
+import random
+from django.urls import reverse
 from django.shortcuts import render,redirect
 from django.utils.safestring import mark_safe
 from .forms import crearFormUsuario
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.conf import settings
+from .forms import crearFormUsuario
+from verify_email.email_handler import send_verification_email
 # Create your views here.
 iconF = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -15,18 +22,34 @@ iconU = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="
   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
 </svg>'''
 
-def navs(request):
-  return render(request, 'navs.html')
-
-def venta(request):
-  return render(request, 'glasses.html')
-
-def contact(request):
-  return render(request, 'contact.html')
-
 def about(request):
   return render(request, 'about.html')
 
+
+
+def contact(request):
+  if request.method == 'POST':
+    
+   asunto = request.POST['asunto']
+   mensaje = "Mensaje:" + request.POST['mensaje'] + "Teléfono: " + request.POST['telefono'] + "Email: " + request.POST['email'] 
+   email = settings.EMAIL_HOST_USER
+   recipiente = ["jhonkerteje1@gmail.com"]
+   send_mail(asunto,mensaje,email,recipiente)
+   
+  return render(request, 'contact.html')
+
+
+
+def index(request):
+     return render(request, 'index.html', {
+        'iconI': mark_safe(iconI),
+        'iconF':mark_safe(iconF),
+        'iconU':mark_safe(iconU),
+
+    })
+     
+     
+     
 def index2(request):
      return render(request, 'index2.html', {
         'iconI': mark_safe(iconI),
@@ -35,22 +58,20 @@ def index2(request):
 
     })
      
-def index(request):
-     return render(request, 'index.html', {
-        'iconI': mark_safe(iconI),
-        'iconF':mark_safe(iconF),
-        'iconU':mark_safe(iconU),
-
-    })
-
-@login_required(login_url='login')
-def otra(request): 
-    return render(request, 'otra.html',{
-        'iconI': mark_safe(iconI),
-        'iconF':mark_safe(iconF),
-        'iconU':mark_safe(iconU),
-
-    })
+     
+     
+def registrarse(request):
+    page = 'registrarse'
+    form = crearFormUsuario() 
+    if request.method == 'POST':
+        # Validar el formulario primero
+        form = crearFormUsuario(request.POST)
+        if form.is_valid():
+            inactive_user = send_verification_email(request,form)
+    return render(request, 'registrarse.html', {'form': form, 'page': page})     
+  
+  
+  
 def loginUser(request):
   page = 'login'
   form = crearFormUsuario() 
@@ -68,24 +89,29 @@ def loginUser(request):
     'page': page,
     'form': form
   })
-
-
-def registrarse(request):
-    page = 'registrarse'
-    form = crearFormUsuario() 
-    if request.method == 'POST':
-        form = crearFormUsuario(request.POST)
-        if form.is_valid():
-            form.save()
-    return render(request, 'registrarse.html', {'form': form, 'page': page})
+  
   
   
 def logoutUser(request):
     logout(request)
-    return redirect('login')
-
-
-
-
+    return redirect('login')  
   
+  
+  
+def venta(request):
+  return render(request, 'glasses.html')  
+
+
+
+
+
+
+# @login_required(login_url='login')
+# def otra(request): 
+#     return render(request, 'otra.html',{
+#         'iconI': mark_safe(iconI),
+#         'iconF':mark_safe(iconF),
+#         'iconU':mark_safe(iconU),
+
+#     })  
     

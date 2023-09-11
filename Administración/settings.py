@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import socket
 from pathlib import Path
 
 
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AirDc'
+    'AirDc',
+    "verify_email.apps.VerifyEmailConfig",
     
 ]
 
@@ -124,3 +125,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "tkg.jhoncaro@gmail.com"  # Reemplaza con tu dirección de Gmail
+EMAIL_HOST_PASSWORD = "roseviqnfwudnpvx"  # Reemplaza con la contraseña de aplicación generada
+
+
+# Asegúrate de habilitar el acceso a aplicaciones menos seguras en tu cuenta de Gmail.
+# También, si tienes la autenticación de dos factores habilitada, genera una Contraseña de Aplicación y úsala aquí.
+
+LOGIN_URL = 'login'

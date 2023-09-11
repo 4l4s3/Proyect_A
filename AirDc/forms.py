@@ -10,10 +10,13 @@ class crearFormUsuario(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(crearFormUsuario, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'Correo electrónico'})
+             {'class': 'form-control', 'placeholder': 'Correo electrónico', 'name': 'mail'})
         self.fields['username'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Nombre de usuario'})
         self.fields['password1'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Contraseña'})
         self.fields['password2'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'Confirmar contraseña'})    
+
+class validacion(forms.Form):
+    numeros = forms.CharField(max_length=4)
