@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import socket
+import os
 from pathlib import Path
 
 
@@ -132,11 +132,11 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "tkg.jhoncaro@gmail.com"  # Reemplaza con tu dirección de Gmail
-EMAIL_HOST_PASSWORD = "roseviqnfwudnpvx"  # Reemplaza con la contraseña de aplicación generada
+EMAIL_HOST_USER = ""  # Reemplaza con tu dirección de Gmail
+EMAIL_HOST_PASSWORD = ""  # Reemplaza con la contraseña de aplicación generada
 
-
-# Asegúrate de habilitar el acceso a aplicaciones menos seguras en tu cuenta de Gmail.
-# También, si tienes la autenticación de dos factores habilitada, genera una Contraseña de Aplicación y úsala aquí.
 
 LOGIN_URL = 'login'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
