@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
    <head>
       <!-- basic -->
       <meta charset="utf-8">
@@ -37,7 +37,7 @@
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+         <div class="loader"><img src="{% static 'img/loading.gif' %}" alt="#" /></div>
       </div>
       <!-- end loader -->
       <!-- header -->
@@ -50,7 +50,7 @@
                     <div class="full">
                        <div class="center-desk">
                           <div class="logo">
-                             <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                             <a href="index.html"><img src="{% static 'img/faviconblack.png' %}" alt="#" width="50px" height="50px"/></a>
                           </div>
                        </div>
                     </div>
@@ -63,25 +63,22 @@
                        <div class="collapse navbar-collapse" id="navbarsExample04">
                           <ul class="navbar-nav mr-auto">
                              <li class="nav-item ">
-                                <a class="nav-link" href="{% url 'index2' %}">Home</a>
+                                <a class="nav-link" href="{% url 'index2' %}">Inicio</a>
                              </li>
                              <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'about' %}">About</a>
+                                <a class="nav-link" href="{% url 'about' %}">Nosotros</a>
                              </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="{% url 'venta' %}">Our Glasses</a>
+                                <a class="nav-link" href="{% url 'venta' %}">Productos</a>
                              </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="shop.html">Shop</a>
-                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                                <a class="nav-link" href="{% url 'contact' %}">Contáctanos</a>
                              </li>
                              <li class="nav-item d_none login_btn">
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
                              </li>
                              <li class="nav-item d_none">
-                                <a class="nav-link" href="{% url 'registrarse' %}">Register</a>
+                                <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>
                              </li>
                              <li class="nav-item d_none sea_icon">
                                 <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -101,29 +98,25 @@
 
       <!--  footer -->
       <footer>
-        <div class="footer">
-           <div class="container">
-              <div class="row">
-                 <div class="col-md-8 offset-md-2">
-                    <ul class="location_icon">
-                       <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br> Location</li>
-                       <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a><br> +01 1234567890</li>
-                       <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a><br> demo@gmail.com</li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
-           <div class="copyright">
-              <div class="container">
-                 <div class="row">
-                    <div class="col-md-12">
-                       <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </footer>
+         <div class="footer" style="padding: 25px;">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                     <ul class="location_icon">
+                     <a href="#"> <img src="{% static 'img/logo-facebook-blanc.png' %}" alt="Logofacebook" width="50" height="50" style="margin: 10px;"></a>
+                     <a href="#"><img src="{% static 'img/LOGOINSTA.png' %}" alt="Logo air dc" width="50" height="50" style="margin: 10px;"></a>
+                     <a href="#"><img src="{% static 'img/LOGOTWITER.png' %}" alt="Logo air dc" width="50" height="50" style="margin: 10px;"></a>
+                            <br>
+                            <br>                   
+                        <li><a href="#" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br> <p>Direccion</p>  <a href="https://www.google.com/maps/place/Cl.+58+%2330-31,+Medell%C3%ADn,+Villa+Hermosa,+Medell%C3%ADn,+Antioquia/@6.2490296,-75.5530688,17z/data=!3m1!4b1!4m6!3m5!1s0x8e44288ab6eddec3:0x6c288d0739c26322!8m2!3d6.2490243!4d-75.5504939!16s%2Fg%2F11pwd0bzht?hl=es-ES&entry=ttu" target="_blank"><p>Calle 58 #30-31</p></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i></a> <p>Telefono Celular</p> <p>+57 323 2473421</p> </li>
+                        <li><a href="#" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><p>Correo Electronico</p> <p>AirDC07@gmail.com</p></li>
+                     </ul>
+                   </div>
+               </div>
+            </div>
+         </div>
+      </footer>
      <!-- end footer -->
      <!-- Javascript files-->
      <script src="{% static 'js/jquery.min.js' %}"></script>

@@ -99,7 +99,7 @@ def logoutUser(request):
   
   
 def venta(request):
-  return render(request, 'glasses.html')  
+  return render(request, 'venta.html')  
 
 
 
