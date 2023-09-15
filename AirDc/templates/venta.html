@@ -14,8 +14,8 @@
                      <div class="card-body">
                         <h5 class="card-title">{{ productos.nombre_producto }}</h5>
                         <p class="card-text description" style="height:72px;">{{ productos.descript_producto }}</p>
-                        <a href="#" class="btn btn-primary mt-2">Añadir al carrito</a>
-                      </div>
+                        <a href="{% url 'carrito:agregar' producto_id=productos.id %}" class="btn btn-primary mt-2">Añadir al carrito</a>
+                     </div>
                     </div>
                   </div>
                </div>
@@ -26,5 +26,8 @@
             </div>
          </div>
       </div>
+      <br>
+      {% include 'carrito/carrito.html' %}
       <!-- end Our  Glasses section -->
+      <br>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
    <head>
       <!-- basic -->
       <meta charset="utf-8">
@@ -9,10 +9,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>sungla</title>
+      <title>AirDc</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
+      <link rel="icon" href="{% static 'img/faviconblack' %}">
+
       <!-- bootstrap css -->
       <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
       <!-- style css -->
@@ -55,6 +57,7 @@
                        </div>
                     </div>
                  </div>
+                 <figure><img id="blackouut" class="blackout" src="{% static 'img/blackout.webp' %}" alt="#"/></figure>
                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +68,7 @@
                              <li class="nav-item ">
                                 <a class="nav-link" href="{% url 'index2' %}">Inicio</a>
                              </li>
-                             <li class="nav-item active">
+                             <li class="nav-link">
                                 <a class="nav-link" href="{% url 'about' %}">Nosotros</a>
                              </li>
                              <li class="nav-item">
@@ -74,15 +77,51 @@
                              <li class="nav-item">
                                 <a class="nav-link" href="{% url 'contact' %}">Contáctanos</a>
                              </li>
-                             <li class="nav-item d_none login_btn">
-                                <a class="nav-link" href="{% url 'login' %}">Ingresar</a>
-                             </li>
-                             <li class="nav-item d_none">
-                                <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>
-                             </li>
+                             <li class="nav-item ml-auto">
+                              <a class="nav-link" id="enlaceTarjeta" onclick="openNav()" href="#">{{ iconU|safe }} </a>
+                            </li>
                              <li class="nav-item d_none sea_icon">
                                 <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
                              </li>
+                             {% if request.user.is_authenticated %}
+                             <div id="tarjeta" class="position-absolute end-0 mt-lg-0" style="display: none;">
+                              <div class="card text-center mb-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ iconU|safe }}</h5>
+                                  <p class="card-text">Bienvenid@ {{request.user}}</p>
+                                  <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar sesión</a>
+                                </div>
+                              </div>
+                           </div>
+                           {% else %}
+                              <div id="mysidebar"class="sidebar" style="display:none;">
+                                    
+                                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                                 <img src="{% static 'img/AirDC.png' %}" alt="#"/>
+                                 <a href="{% url 'login' %}" class=" btnresponsive">Iniciar Sesión</a>
+                                 <a href="{% url 'registrarse' %}" class=" btnresponsive" style="margin-top:5px;">Registrarse</a>
+                                    
+                                 </div>
+                              
+                                  <script>
+                                  function openNav() {
+                                    document.getElementById("mysidebar").style.width = "720px";
+                                    document.getElementById("mysidebar").style.display = "block";
+                                    document.getElementById("blackouut").style.opacity = "0.5";
+                                    document.getElementById("blackouut").style.display = "block";
+                                  }
+                                  
+                                  function closeNav() {
+                                    document.getElementById("mysidebar").style.width = "0px";
+                                    document.getElementById("blackouut").style.opacity = "0.0";
+                                    document.getElementById("blackouut").style.display = "none";
+                                  }
+                                  </script>
+                                  {% endif %}
+                                    </div>
+                                  </div>
+                               </div>
+                              </div>
                           </ul>
                        </div>
                     </nav>
@@ -90,62 +129,55 @@
               </div>
            </div>
         </div>
+        
      </header>
+
 
      {% block content %}
 
      {% endblock %}
 
       <!--  footer -->
-      <footer>
-         <div class="footer" style="padding: 25px;">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-8 offset-md-2">
-                     <ul class="location_icon">
-                     <a href="#"> <img src="{% static 'img/logo-facebook-blanc.png' %}" alt="Logofacebook" width="50" height="50" style="margin: 10px;"></a>
-                     <a href="#"><img src="{% static 'img/LOGOINSTA.png' %}" alt="Logo air dc" width="50" height="50" style="margin: 10px;"></a>
-                     <a href="#"><img src="{% static 'img/LOGOTWITER.png' %}" alt="Logo air dc" width="50" height="50" style="margin: 10px;"></a>
-                            <br>
-                            <br>                   
-                        <li><a href="#" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i></a><br> <p>Direccion</p>  <a href="https://www.google.com/maps/place/Cl.+58+%2330-31,+Medell%C3%ADn,+Villa+Hermosa,+Medell%C3%ADn,+Antioquia/@6.2490296,-75.5530688,17z/data=!3m1!4b1!4m6!3m5!1s0x8e44288ab6eddec3:0x6c288d0739c26322!8m2!3d6.2490243!4d-75.5504939!16s%2Fg%2F11pwd0bzht?hl=es-ES&entry=ttu" target="_blank"><p>Calle 58 #30-31</p></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-phone" aria-hidden="true"></i></a> <p>Telefono Celular</p> <p>+57 323 2473421</p> </li>
-                        <li><a href="#" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><p>Correo Electronico</p> <p>AirDC07@gmail.com</p></li>
-                     </ul>
-                   </div>
+      <footer class="pie-pagina">
+         <div class="grupo-1">
+            <div class="box">
+               <figure>
+                  <a href="#">
+                     <img src="../static/img/faviconcyan.png" alt="Logo AirD DC">
+                  </a>
+               </figure>
+            </div>
+            <div class="box">
+               <h2>SOBRE NOSOTROS</h2>
+               <p>AirDC Es Una Empresa De Venta De Aires Acondicionados Automotrices, Manten Tu Auto Fresco Con Nosotros.</p>
+               <p>Direccion: Calle 58 #30-31</p>
+               <p>Correo: AirDc07@gmail.com</p>
+            </div>
+            <div class="box">
+               <h2>SIGUENOS</h2>
+               <div class="red-social">
+                  <a href="https://web.facebook.com/profile.php?id=61551399237237" target="_blank" class="fa fa-facebook"></a>
+                  <a href="https://www.instagram.com/airdc_/" target="_blank" class="fa fa-instagram"></a>
+                  <a href="https://twitter.com/AirDc_07" target="_blank" class="fa fa-twitter"></a>
+                  <a href="https://www.youtube.com/@darkxd-yt8006" target="_blank" class="fa fa-youtube"></a>
                </div>
             </div>
          </div>
+         <div class="grupo-2">
+            <small>&copy; 2023 <b>Air DC</b> - Todos Los Derechos Reservados</small>
+         </div>       
       </footer>
      <!-- end footer -->
      <!-- Javascript files-->
+     <script src="{% static 'js/main.js' %}"></script>
+
      <script src="{% static 'js/jquery.min.js' %}"></script>
      <script src="{% static 'js/popper.min.js' %}"></script>
      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
      <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
      <!-- sidebar -->
      <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-     <script src="{% static 'js/custom.js' %}"></script>
-     <script>
-        // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-        // Australia.
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 11,
-            center: {lat: 40.645037, lng: -73.880224},
-            });
-        
-        var image = 'images/maps-and-flags.png';
-        var beachMarker = new google.maps.Marker({
-            position: {lat: 40.645037, lng: -73.880224},
-            map: map,
-            icon: image
-          });
-        }
-     </script>
-     <!-- google map js -->
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
-     <!-- end google map js --> 
+     <script src="{% static 'js/custom.js' %}"></script>  
   </body>
 </html>
 

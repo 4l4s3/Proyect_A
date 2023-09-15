@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from .models import producto
+from .models import Producto
 
-class productoAdmin(admin.ModelAdmin):
-    list_display = ("id_producto","nombre_producto")
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ("nombre_producto",)
 
-admin.site.register(producto,productoAdmin)
+admin.site.register(Producto,ProductAdmin)
 # Register your models here.

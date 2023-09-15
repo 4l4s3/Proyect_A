@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from AirDc import urls
+from django import urls
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -24,6 +24,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('AirDc.urls')),
+    path('carrito/',include('carrito.urls')),
+
 ]
 
 if settings.DEBUG: 
