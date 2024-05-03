@@ -15,13 +15,12 @@
 				jsFileLocation: "revolution/js/",
 				sliderLayout: "fullscreen",
 				dottedOverlay: "none",
-				delay: 5000,
+				delay: 3000,
 				navigation: {
 					keyboardNavigation: "on",
 					keyboard_direction: "horizontal",
 					mouseScrollNavigation: "off",
 					mouseScrollReverse: "default",
-					onHoverStop: "on",
 					touch: {
 						touchenabled: "on",
 						swipe_threshold: 75,

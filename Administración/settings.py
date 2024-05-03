@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     'AirDc',
     "verify_email.apps.VerifyEmailConfig",
     'carrito',
-    
+    'rest_framework',
+    'corsheaders',
+    'coreapi',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -135,11 +138,18 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ""  # Reemplaza con tu dirección de Gmail
-EMAIL_HOST_PASSWORD = ""  # Reemplaza con la contraseña de aplicación generada
+EMAIL_HOST_USER = "tkg.jhoncaro@gmail.com"  # Reemplaza con tu dirección de Gmail
+EMAIL_HOST_PASSWORD = "zvrcscedntdmtpvp"  # Reemplaza con la contraseña de aplicación generada
 
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'iniciar'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
+]
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}

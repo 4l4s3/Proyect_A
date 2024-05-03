@@ -44,6 +44,7 @@ body {
      font-family: 'Poppins', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
+     background-color: lightblue;
 }
 
 a {
@@ -506,8 +507,8 @@ button {
 /** Our  Glasses section **/
 
 .glasses {
-     background: #fff;
-     margin-top: 90px;
+     background: #dfe7ff;
+     margin-top: 10px;
 }
 
 .glasses .titlepage {
@@ -1032,4 +1033,54 @@ ul.location_icon li a {
           padding: 45px 0px; 
      }
  }     
-      
+
+ #carrocompra {
+  border-collapse: collapse;
+  width: 30%;
+  margin-top:7%;
+  margin-left: 70%;
+  display: none;
+  z-index: 999999;
+}
+
+#carrocompra th, #carrocompra td {
+  border: 1px solid #4285f4;
+  padding: 8px;
+  text-align: left;
+  background-color: white;
+}
+
+#carrocompra th {
+  background-color: #4285f4;
+  color: white;
+  text-align: center;
+}
+
+#carrocompra tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#carrocompra tfoot {
+  background-color: #4285f4;
+  color: white;
+  text-align: center;
+}
+
+#carrocompra a {
+  text-decoration: none;
+  color: white;
+  margin-right: 5px;
+}
+
+.alert {
+  background-color: #f2dede;
+  color: #a94442;
+  border: 1px solid #a94442;
+  padding: 8px;
+  text-align: center;
+}
+
+.search-result-container{
+     margin-left: 20%;
+}
+

@@ -1,0 +1,83 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+<br><br><br>
+<br><br><br>
+
+{% if producto|length > 1 %}
+<div class="container">
+   <div class="row justify-content-center">
+       <div class="col-12 col-md-6">
+           <form action="/form-producto/0/" method="POST" enctype="multipart/form-data" style="text-align: center;">
+               {% csrf_token %}
+               {% for field in form %}
+                   <div class="form-group">
+                       {{ field }}
+                       {{ field.errors }}
+                   </div>
+               {% endfor %}
+               <button type="submit" class="btn btn-primary">Enviar</button>
+           </form>
+       </div>
+   </div>
+</div>
+{% endif %}
+
+
+
+      <!-- Our  Glasses section -->
+      <div class="glasses">
+            <div class="container">
+               <div class="card-deck">
+                  {% for productos in producto %}
+                  <div class="col-md-6 col-lg-4 mt-4">
+                     <div class="card" style="width: 23rem;">
+                      <div class="card-block">
+                        <img alt="Card image cap" class="card-img-top img-fluid" src="{{ productos.img_producto.url }}" />
+                        <div class="card-body">
+                           <h5 class="card-title">{{ productos.nombre_producto }}</h5>
+                           <p class="card-text description" style="height:72px;">{{ productos.descript_producto }}</p>
+                           <a href="{% url 'formProducto' id=productos.id %}" class="btn btn-primary mt-2">Ver</a>
+                           <button onclick="getProducto('{{ productos.id }}')" class="btn btn-danger mt-2">Eliminar</button>
+                           <!-- {% if producto %}                           
+                           <div>{{product1}}</div>
+                           {% endif %} -->
+                        </div>
+                       </div>
+                     </div>
+                  </div>
+                  {% endfor %}
+                  <div class="col-md-12">
+                     <a class="read_more" href="#">Leer más</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <!-- end Our  Glasses section -->
+      <br>
+      <script>
+         function getProducto(producto){
+            id_producto = parseInt(producto)
+            const productosApi = axios.create({
+  baseURL: "http://127.0.0.1:8000/api/v1/productos",
+});
+if (id_producto){
+   async function getProducto(id_producto) {
+  const hi = await productosApi.delete(`/${id_producto}`);
+  window.location.href = "/form-producto/0/";
+  console.log(hi.data);
+}
+getProducto(id_producto)
+
+
+}
+
+         }
+         // Acceder a una variable de Django en JavaScript
+         var miVariable = "{{ producto }}";
+         console.log(miVariable);
+     </script>
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <!-- <script src="{% static 'js/axios.js' %}"></script> -->
+{% endblock %}

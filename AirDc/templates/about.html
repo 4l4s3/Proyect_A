@@ -1,4 +1,5 @@
 {% extends 'nav.html' %}
+{% load static %}
 {% block content %}
       <!-- about section -->
       <div class="about">
@@ -6,7 +7,7 @@
             <div class="row d_flex">
                <div class="col-md-5">
                   <div class="about_img">
-                     <figure><img src="images/about_img.png" alt="#"/></figure>
+                     <figure><img src="{% static 'img/ac1.jpg' %}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-7">
@@ -16,7 +17,6 @@
                         En AirDC, creemos que la comodidad en la carretera es esencial para una experiencia de conducción placentera. Únete a nuestra comunidad de clientes satisfechos y descubre cómo podemos mejorar tu viaje con sistemas de aire acondicionado automotrices de primera clase.
                      </p>
                   </div>
-                  <a class="read_more" href="#">Leer más</a>
                </div>
             </div>
          </div>

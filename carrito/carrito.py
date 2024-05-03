@@ -20,6 +20,7 @@ class Carrito:
             for key, value in self.carrito.items():
                 if key == str(producto.id):
                     value['cantidad'] = value['cantidad'] + 1
+                    value['precio'] = float(value['precio']) + producto.precio_producto
                     break
         self.guardar_carrito()
         
@@ -37,6 +38,8 @@ class Carrito:
         for key, value in self.carrito.items():
             if key == str(producto.id):
                 value['cantidad'] = value['cantidad'] -1
+                value['precio'] = float(value['precio']) - producto.precio_producto
+
                 if value['cantidad'] < 1:
                     self.eliminar(producto)
                 break     
