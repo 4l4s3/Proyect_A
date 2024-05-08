@@ -8,9 +8,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import crearFormUsuario
+from .forms import crearFormUsuario,formProducto
 from verify_email.email_handler import send_verification_email
 from .models import Producto
+from rest_framework import viewsets
+from .serializer import productos_serializer
 # Create your views here.
 iconF = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -24,7 +26,11 @@ iconU = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="
 </svg>'''
 
 def about(request):
-  return render(request, 'about.html')
+  return render(request, 'about.html',{
+        'iconI': mark_safe(iconI),
+        'iconF':mark_safe(iconF),
+        'iconU':mark_safe(iconU),
+  })
 
 
 
@@ -32,17 +38,49 @@ def contact(request):
   if request.method == 'POST':
     
    asunto = request.POST['asunto']
-   mensaje = "Mensaje:" + request.POST['mensaje'] + "Teléfono: " + request.POST['telefono'] + "Email: " + request.POST['email'] 
+   mensaje = "Mensaje:" + request.POST['mensaje'] +"  " + "Teléfono: " + request.POST['telefono'] +"  "+ "Email: " + request.POST['email'] 
    email = settings.EMAIL_HOST_USER
    recipiente = ["jhonkerteje1@gmail.com"]
    send_mail(asunto,mensaje,email,recipiente)
    
-  return render(request, 'contact.html')
-
-
-
+  return render(request, 'contact.html',{
+        'iconI': mark_safe(iconI),
+        'iconF':mark_safe(iconF),
+        'iconU':mark_safe(iconU),
+  })
+  
+def formProduct(request,id=None):
+  product = Producto.objects.all()
+  if request.method == 'POST':
+    form = formProducto(request.POST,request.FILES)
+    if form.is_valid():
+       form.save()
+  elif request.method == 'GET':
+    if id == 0:
+      product = Producto.objects.all()
+      form = formProducto() 
+    else:
+     product = Producto.objects.filter(id=id)
+     form = formProducto()
+    if(product.exists()):
+       product1 = product.first().id
+      
+  else:
+    form = formProducto()
+  return render(request,'formProducto.html',{
+    # 'product1': product1,
+    'form':form,
+    'iconI': mark_safe(iconI),
+    'iconF':mark_safe(iconF),
+    'iconU':mark_safe(iconU),
+    'producto': product
+  })
+     
+         
 def index(request):
-     return render(request, 'index.html', {
+  product = Producto.objects.all()
+  return render(request, 'index.html', {
+        'Producto': product,
         'iconI': mark_safe(iconI),
         'iconF':mark_safe(iconF),
         'iconU':mark_safe(iconU),
@@ -50,31 +88,8 @@ def index(request):
     })
      
      
-     
-def index2(request):
-     return render(request, 'index2.html', {
-        'iconI': mark_safe(iconI),
-        'iconF':mark_safe(iconF),
-        'iconU':mark_safe(iconU),
-
-    })
-     
-     
-     
-def registrarse(request):
-    page = 'registrarse'
-    form = crearFormUsuario() 
-    if request.method == 'POST':
-        # Validar el formulario primero
-        form = crearFormUsuario(request.POST)
-        if form.is_valid():
-            inactive_user = send_verification_email(request,form)
-    return render(request, 'registrarse.html', {'form': form, 'page': page})     
-  
-  
-  
-def loginUser(request):
-  page = 'login'
+def iniciar_sesion(request):
+  page = 'iniciar'
   form = crearFormUsuario() 
   if request.method == 'POST':
     username = request.POST['username']
@@ -86,29 +101,59 @@ def loginUser(request):
       login(request, user)
       return redirect('../')
     
-  return render(request, 'registrarse.html',{
-    'page': page,
-    'form': form
+  return render(request,'iniciar_sesion.html',{
+        'page': page,
+        'form': form
   })
+     
+     
+     
+def registrarse(request):
+    page = 'registrarse'
+    form = crearFormUsuario() 
+    if request.method == 'POST':
+        # Validar el formulario primero
+        form = crearFormUsuario(request.POST)
+        if form.is_valid():
+            inactive_user = send_verification_email(request,form)
+    return render(request, 'iniciar_sesion.html', {'form': form, 'page': page})     
   
   
   
 def logoutUser(request):
     logout(request)
-    return redirect('login')  
+    return redirect('iniciar')  
   
   
   
-def venta(request):
-  product = Producto.objects.all()
-  return render(request, 'venta.html',{
-    'producto': product
-  })  
+def venta(request, id=None, name=None ):
+  if request.method == 'POST':
+    nombre_producto = request.POST.get('search','')
+    product = Producto.objects.filter(nombre_producto__icontains=nombre_producto)
+    search = False
+    
+  elif request.method == 'GET':
+    if id == 0:
+      product = Producto.objects.all()
+      search = False
+    else:
+     search = True
+     product = Producto.objects.filter(id=id)
+  # else:
+  #   product = Producto.objects.all()
+    
+  return render(request, 'venta.html', {
+        'search': search,
+        'iconI': mark_safe(iconI),  # Asegúrate de definir iconI, iconF, iconU antes de usarlos
+        'iconF': mark_safe(iconF),
+        'iconU': mark_safe(iconU),
+        'producto': product
+    })
 
 
-
-
-
+class productos_view(viewsets.ModelViewSet):
+  serializer_class = productos_serializer
+  queryset = Producto.objects.all()
 
 # @login_required(login_url='login')
 # def otra(request): 

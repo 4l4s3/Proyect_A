@@ -8,8 +8,9 @@ class Producto(models.Model):
     img_producto = models.ImageField(upload_to="productos",null=True)
     valor_compra = models.IntegerField()
     precio_producto = models.IntegerField()
-    activo = models.BooleanField()
     encargado = models.CharField(max_length=30)
+    activo = models.BooleanField()
+    
     
     
 # Create your models here.

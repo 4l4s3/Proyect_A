@@ -1,15 +1,21 @@
 from django.urls import path,include
 from . import views
+from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
+router = routers.DefaultRouter()
+router.register(r'productos',views.productos_view, 'productos')
 
 urlpatterns = [
-    path('index/', views.index, name='index'),
     # path('otra/',views.otra, name='otra'),
     path('registrarse/',views.registrarse, name='registrarse'),
-    path('login/',views.loginUser, name='login'),
     path('logout/',views.logoutUser, name='logout'),
-    path('', views.index2, name='index2'),
+    path('', views.index, name='index'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    path('venta/', views.venta, name='venta'),
+    path('venta/<int:id>/', views.venta, name='venta'),
     path('verification/', include('verify_email.urls')),
+    path('iniciar_sesion/',views.iniciar_sesion, name='iniciar'),
+    path('form-producto/<int:id>/', views.formProduct, name='formProducto'),
+    path('api/v1/', include(router.urls)),
+    path('docs/', include_docs_urls(title='Credential API')),
 ]

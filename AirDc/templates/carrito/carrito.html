@@ -1,6 +1,6 @@
-<table border="1" width="700px">
-    <tr>
-        <th colspan="3" class="text-center">Carrito de compras</th>
+<table id="carrocompra" border="0" width="100%" style="display:none">
+    <tr> 
+      <th colspan="3" class="text-center"><a href="javascript:void(0)" onclick="cerrarCarro()">×</a><br>Carrito de compras</th>
     </tr>
     <tr>
         <th>Producto</th>
@@ -38,3 +38,13 @@
         </tr>
     </tfood>
 </table>
+</script>
+<script>
+  function verCarro() {
+    document.getElementById("carrocompra").style.display = "block";
+    document.getElementById("carrocompra").style.position = "fixed";
+}
+  function cerrarCarro(){
+    document.getElementById("carrocompra").style.display = "none";
+  }
+</script>

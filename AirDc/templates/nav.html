@@ -66,40 +66,69 @@
                        <div class="collapse navbar-collapse" id="navbarsExample04">
                           <ul class="navbar-nav mr-auto">
                              <li class="nav-item ">
-                                <a class="nav-link" href="{% url 'index2' %}">Inicio</a>
+                                <a class="nav-link" href="{% url 'index' %}">Inicio</a>
                              </li>
                              <li class="nav-link">
                                 <a class="nav-link" href="{% url 'about' %}">Nosotros</a>
                              </li>
                              <li class="nav-item">
-                                <a class="nav-link" href="{% url 'venta' %}">Productos</a>
+                                <a class="nav-link" href=" /venta/0 ">Productos</a>
                              </li>
+                             <li class="nav-link">
+                              <a class="nav-link" href="/form-producto/0">Formulario</a>
+                           </li>
                              <li class="nav-item">
                                 <a class="nav-link" href="{% url 'contact' %}">Contáctanos</a>
-                             </li>
+                             </li>  
                              <li class="nav-item ml-auto">
                               <a class="nav-link" id="enlaceTarjeta" onclick="openNav()" href="#">{{ iconU|safe }} </a>
                             </li>
-                             <li class="nav-item d_none sea_icon">
-                                <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-search" aria-hidden="true"></i></a>
-                             </li>
+                              <li class="nav-item d_none sea_icon">
+                                 <a class="nav-link" id="enlaceCarrito" onclick="verCarro()" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                 </svg></a>
+                                 
+                              </li>
                              {% if request.user.is_authenticated %}
-                             <div id="tarjeta" class="position-absolute end-0 mt-lg-0" style="display: none;">
-                              <div class="card text-center mb-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="card-body">
-                                  <h5 class="card-title">{{ iconU|safe }}</h5>
-                                  <p class="card-text">Bienvenid@ {{request.user}}</p>
-                                  <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar sesión</a>
-                                </div>
+                             <div id="mysidebar"class="sidebar" style="display:none;">
+                                    
+                              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                              <img src="{% static 'img/AirDC.png' %}" alt="#"/>
+                              <p style="width:600px;margin-top: 50px;margin-right:50px;margin-left:50px;  overflow-wrap: break-word;
+                              word-wrap: break-word;
+                              word-break: break-word;">Bienvenido a AirDC {{request.user}}
+<br><br>
+<br>
+
+<a href="{% url 'logout' %}" class="btn btn-primary">Cerrar sesión</a>
                               </div>
-                           </div>
+                           
+                               <script>
+                               function openNav() {
+                                 document.getElementById("mysidebar").style.width = "720px";
+                                 document.getElementById("mysidebar").style.display = "block";
+                                 document.getElementById("blackouut").style.opacity = "0.5";
+                                 document.getElementById("blackouut").style.display = "block";
+                               }
+                               
+                               function closeNav() {
+                                 document.getElementById("mysidebar").style.width = "0px";
+                                 document.getElementById("blackouut").style.opacity = "0.0";
+                                 document.getElementById("blackouut").style.display = "none";
+                               }
+                               </script>
                            {% else %}
                               <div id="mysidebar"class="sidebar" style="display:none;">
                                     
                                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                                  <img src="{% static 'img/AirDC.png' %}" alt="#"/>
-                                 <a href="{% url 'login' %}" class=" btnresponsive">Iniciar Sesión</a>
-                                 <a href="{% url 'registrarse' %}" class=" btnresponsive" style="margin-top:5px;">Registrarse</a>
+                                 <p style="width:600px;margin-top: 50px;margin-right:50px;margin-left:50px;  overflow-wrap: break-word;
+                                 word-wrap: break-word;
+                                 word-break: break-word;">Bienvenido a AirDC, tu destino para la climatización automotriz.<br> Si ya tienes una cuenta,
+                                    inicia sesión.<br>
+                                    Si eres nuevo, regístrate para descubrir una amplia gama de productos<br> de calidad.<br>
+                                 <a href="{% url 'iniciar' %}" class="btnresponsive">Iniciar Sesión</a>
+                                 <a href="{% url 'registrarse' %}" class="sndary" style="margin-top:5px;">Registrarse</a>
                                     
                                  </div>
                               
@@ -117,6 +146,15 @@
                                     document.getElementById("blackouut").style.display = "none";
                                   }
                                   </script>
+                                  <script>
+                                    function verCarro() {
+                                      document.getElementById("carrocompra").style.display = "block";
+                                      document.getElementById("carrocompra").style.position = "fixed";
+                                    }
+                                    function cerrarCarro(){
+                                      document.getElementById("carrocompra").style.display = "none";
+                                    }
+                                  </script>
                                   {% endif %}
                                     </div>
                                   </div>
@@ -129,7 +167,7 @@
               </div>
            </div>
         </div>
-        
+        {% include 'carrito/carrito.html' %}
      </header>
 
 
@@ -143,7 +181,7 @@
             <div class="box">
                <figure>
                   <a href="#">
-                     <img src="../static/img/faviconcyan.png" alt="Logo AirD DC">
+                     <img src="{% static 'img/faviconcyan.png' %}" alt="Logo AirD DC">
                   </a>
                </figure>
             </div>
