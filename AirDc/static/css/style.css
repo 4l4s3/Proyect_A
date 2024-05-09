@@ -579,7 +579,7 @@ button {
 /** Our shop section **/
 
 .shop {
-     margin-top: 90px;
+     margin-top: 20px;
      background: #fefdf9;
      border-top: #f2f1ed solid 1px;
      border-bottom: #f2f1ed solid 1px;
@@ -868,7 +868,7 @@ ul.location_icon li a {
 
 .position_head .glasses,
 .shop {
-     margin-bottom: 90px;
+     margin-bottom: 0px;
 }
 
 .description{
