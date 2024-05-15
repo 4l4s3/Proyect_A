@@ -74,9 +74,11 @@
                              <li class="nav-item">
                                 <a class="nav-link" href=" /venta/0 ">Productos</a>
                              </li>
+                             {% if user.is_superuser %}
                              <li class="nav-link">
                               <a class="nav-link" href="/form-producto/0">Formulario</a>
                            </li>
+                           {% endif %}
                              <li class="nav-item">
                                 <a class="nav-link" href="{% url 'contact' %}">Contáctanos</a>
                              </li>  

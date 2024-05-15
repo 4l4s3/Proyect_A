@@ -40,7 +40,7 @@ def contact(request):
    asunto = request.POST['asunto']
    mensaje = "Mensaje:" + request.POST['mensaje'] +"  " + "Teléfono: " + request.POST['telefono'] +"  "+ "Email: " + request.POST['email'] 
    email = settings.EMAIL_HOST_USER
-   recipiente = ["jhonkerteje1@gmail.com"]
+   recipiente = ["us.airdc@gmail.com"]
    send_mail(asunto,mensaje,email,recipiente)
    
   return render(request, 'contact.html',{
