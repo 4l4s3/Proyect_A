@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>  
+    <title>AirDc</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono web -->
+    <link rel="icon" href="{% static 'img/Air.ico.png' %}">
+    <!-- Boostrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css">
+    <!-- Estilos css -->
+    <link rel="stylesheet" href="{% static 'css/esti.css'%}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css">
+</head>
+<body> 
+     <!-- Navegador de la página -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-custom-color">
+      <div class="container-fluid d-flex justify-content-center">
+        <a class="navbar-brand" href="#"><img src="{% static 'img/1212.png' %}" alt="" style="width: 100px; margin-top: -20px; margin-bottom: -10px;"></a>
+      </div>
+    </nav>
+  </header>
+<!-- LOGIN -->
+{% if page == 'login' %}
+<form method="POST">
+  {% csrf_token %}
+  <div class="container text-center col-12 col-md-8 col-sm-12 mt-4 container-extra-height" style="border-radius: 10px; border: 2px solid #002147;">
+    <h1 class="mt-5">Iniciar sesión</h1>
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-10 col-sm-10 pb-2 pt-5">
+         {{ form.username }}
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-10 col-sm-10 pb-2">
+        {{ form.password1 }}
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-10 col-sm-10 pb-2">
+        <input type="submit" value="Iniciar sesión" class="form-control btn btn-primary btn-">
+      </div>
+      <p>¿Aún no tienes una cuenta?</q></q> <a href="{% url 'registrarse' %}">Registrate</a></p>
+      {{form.errors}}
+    </div>
+  </div>
+</form>
+{% else %}
+<!-- REGISTER -->
+  <form method="POST">
+    {% csrf_token %}
+    <div class="container text-center col-12 col-md-8 col-sm-12 mt-4 container-extra-height" style="border-radius: 10px; border: 2px solid #002147;">
+      <h1>Registrarse</h1>
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-10 col-sm-10 pb-2 pt-5">
+           {{ form.email }}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-10 col-sm-10 pb-2">
+          {{ form.username }}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-10 col-sm-10 pb-2">
+          {{ form.password1 }}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-10 col-sm-10 pb-2">
+          {{ form.password2 }}
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-10 col-sm-10 pb-2">
+          <input type="submit" value="Registrarte" class="form-control btn btn-primary btn-">
+        </div>
+        <p>¿Ya tienes una cuenta?</q></q> <a href="{% url 'login' %}">Inicia sesión</a></p>
+        {{form.errors}}
+      </div>
+    </div>
+  </form>
+{% endif %}
+
+
+
+</body> 
+</html>

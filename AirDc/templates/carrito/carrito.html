@@ -1,0 +1,50 @@
+<table id="carrocompra" border="0" width="100%" style="display:none">
+    <tr> 
+      <th colspan="3" class="text-center"><a href="javascript:void(0)" onclick="cerrarCarro()">×</a><br>Carrito de compras</th>
+    </tr>
+    <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Suma</th>
+    </tr>
+    <tbody>
+    {% if request.session.carrito.items %}
+        {% for key, value in request.session.carrito.items %}
+        <tr class="text-center">
+           <td>{{value.nombre}}</td>  
+           <td>{{value.cantidad}}</td>  
+           <td>
+            <a href="{% url 'carrito:agregar' value.producto_id %}" class="btn btn-sm btn-success">+</a>
+            <a href="{% url 'carrito:restar' value.producto_id %}" class="btn btn-sm btn-success">-</a>
+            <br>
+            Valor por unidad de producto: {{value.precio}} $  
+
+           </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="3">
+                <div class="alert alert-danger text-center">Sin productos</div>
+            </td>
+        </tr>
+    {% endif %}
+    </tbody>
+    <tfood>
+        <tr>
+            <td colspan="3">
+                Total: {{importe_total_carrito}}
+            </td>
+        </tr>
+    </tfood>
+</table>
+</script>
+<script>
+  function verCarro() {
+    document.getElementById("carrocompra").style.display = "block";
+    document.getElementById("carrocompra").style.position = "fixed";
+}
+  function cerrarCarro(){
+    document.getElementById("carrocompra").style.display = "none";
+  }
+</script>

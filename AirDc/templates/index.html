@@ -1,0 +1,121 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+{% load static %}
+      <!-- banner -->
+       <section class="banner_main">
+        <div id="banner1" class="carousel slide" data-ride="carousel">
+           <ol class="carousel-indicators">
+              <li data-target="#banner1" data-slide-to="0" class="active"></li>
+              <li data-target="#banner1" data-slide-to="1" class="active"></li>
+              <li data-target="#banner1" data-slide-to="2" class="active"></li>
+           </ol>
+           <div class="carousel-inner">
+              <div class="carousel-item active" style="background-image:url(../static/img/f.jpg); background-repeat: no-repeat; background-size:cover">
+                 <div class="container">
+                    <div class="carousel-caption">
+                       <div class="text-bg">
+                          <h1> <span class="blu">AirDC <br></span>refresca tu viaje</h1>
+                          <figure><img src="{% static 'img/faviconcyan.png' %}" alt="#"/></figure>
+                          <a class="read_more" href=" /venta/0 ">Productos</a>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="carousel-item" style="background-image:url(../static/img/CarAC.webp); background-repeat: no-repeat; background-size:cover">
+                 <div class="container">
+                    <div class="carousel-caption">
+                       <div class="text-bg">
+                        <h1> <span class="bla">AirDC <br></span>refresca tu viaje</h1>
+                        <figure><img src="{% static 'img/faviconblack.png' %}" alt="#"/></figure>
+                        <a class="read_more" href=" /venta/0 ">Productos</a>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="carousel-item" style="background-image:url(../static/img/CarAC2.jfif); background-repeat: no-repeat; background-size:cover">
+                 <div class="container">
+                    <div class="carousel-caption">
+                       <div class="text-bg">
+                        <h1> <span class="whi">AirDC <br></span>refresca tu viaje</h1>
+                        <figure><img src="{% static 'img/faviconwhite.png' %}" alt="#"/></figure>
+                        <a class="read_more_white" href=" /venta/0 ">Productos</a>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
+           <i class="fa fa-arrow-left" aria-hidden="true"></i>
+           </a>
+           <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
+           <i class="fa fa-arrow-right" aria-hidden="true"></i>
+           </a>
+        </div>
+     </section>
+     <!-- end banner -->
+     
+     <!-- Our shop section -->
+     <div id="about" class="shop">
+        <div class="container-fluid">
+           <div class="row">
+              <div class="col-md-5">
+                 <div  class="shop_img">
+                    <figure><img src="{% static 'img/ac2.jpg' %}" alt="#"/></figure>
+                 </div>
+              </div>
+              <div class="col-md-7 padding_right0">
+                 <div class="max_width">
+                    <div class="titlepage">
+                       <h2>Los mejores productos del mercado</h2>
+                       <p>En AirDC, nos enorgullece ofrecer productos de calidad y soluciones de climatización confiables para tu automóvil. Explora nuestra gama de productos y encuentra la solución perfecta para mantener tu comodidad en carretera. Nuestra misión es asegurarnos de que tu viaje sea siempre fresco y agradable.                       </p>
+                       <a class="read_more" href=" /venta/0 ">Productos</a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+     </section>
+     <!-- end banner -->
+     
+   
+      <!-- contact section -->
+      <div id="contact" class="contact">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <form id="request" class="main_form" action="{% url 'contact' %}" method="post">
+                     {% csrf_token %}
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <h3>Contáctanos</h3>
+                        </div>
+                        <div class="col-md-12 ">
+                           <input class="contactus" placeholder="Asunto" type="type" name="asunto"> 
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Número telefónico" type="type" name="telefono"> 
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactus" placeholder="Email" type="type" name="email">                          
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contactusmess" placeholder="Mensaje" type="type" name="mensaje">
+                        </div>
+                        <div class="col-md-12">
+                           <input type="submit" class="send_btn" value="Enviar">
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="container-fluid">
+            <div class="map_section">
+               <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1115455226404!2d-75.55306882411568!3d6.249029626290188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44288ab6eddec3%3A0x6c288d0739c26322!2sCl.%2058%20%2330-31%2C%20Medell%C3%ADn%2C%20Villa%20Hermosa%2C%20Medell%C3%ADn%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1694635605083!5m2!1ses!2sco" width="100%" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+               </div>
+            </div>
+         </div>
+     </div>
+      <!-- end contact section -->
+{% endblock %}

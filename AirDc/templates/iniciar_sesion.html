@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="{% static './css/estilos2.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    {% if page == 'iniciar' %}
+    <section class="main">
+
+        <figure class="main__figure">
+            <img src="{% static './img/8501966.jpg' %}" class="main__img">
+        </figure>
+
+        <div class="main__contact">
+
+            <h2 class="main__title">AIRDC</h2>
+            <p class="main__paragraph">¡Únete a nuestra Familia!</p>
+
+            <form class="main__form" method="POST">
+                {% csrf_token %}
+
+                {{ form.username }}
+                {{ form.password1 }}
+
+                <input type="submit" value="Iniciar sesión" class="main__input main__input--send">
+                {{form.errors}}
+            </form>
+            <a href="{% url 'registrarse' %}"><p class="main__paragraph">Registrate aquí</p></a>
+
+            <p class="main__paragraph">Registrate con:</p>
+
+            <article class="main__social">
+
+                <a href="#" class="main__link">
+                    <img src="{% static './img/google-icon.svg' %}" class="main__icon">
+                </a>
+
+                <a href="#" class="main__link">
+                    <img src="{% static './img/apple.svg' %}" class="main__icon">
+                </a>
+
+                <a href="#" class="main__link">
+                    <img src="{% static './img/facebook.svg' %}" class="main__icon">
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+    {% else %}
+    <section class="main">
+
+        <figure class="main__figure">
+            <img src="{% static './img/8501966.jpg' %}" class="main__img">
+        </figure>
+
+        <div class="main__contact">
+
+            <h2 class="main__title">AIRDC</h2>
+            <p class="main__paragraph">¡Bienvenido de nuevo!</p>
+
+            <form class="main__form" method="POST">
+                {% csrf_token %}
+                {{ form.email }}
+                {{ form.username }}
+                {{ form.password1 }}
+                {{ form.password2 }}
+                <input type="submit" value="Registrarse" class="main__input main__input--send">
+                {{form.errors}}
+
+
+            </form>
+            <a href="{% url 'iniciar' %}"><p class="main__paragraph">Iniciar sesión aquí</p></a>
+
+            <p class="main__paragraph">Registrate con:</p>
+
+            <article class="main__social">
+
+                <a href="#" class="main__link">
+                    <img src="{% static './img/google-icon.svg' %}" class="main__icon">
+                </a>
+
+                <a href="#" class="main__link">
+                    <img src="{% static './img/apple.svg' %}" class="main__icon">
+                </a>
+
+                <a href="#" class="main__link">
+                    <img src="{% static './img/facebook.svg' %}" class="main__icon">
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>   
+    {% endif %}
+
+</body>
+
+</html>
