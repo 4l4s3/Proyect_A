@@ -161,6 +161,4 @@ class productos_view(viewsets.ModelViewSet):
 #         'iconI': mark_safe(iconI),
 #         'iconF':mark_safe(iconF),
 #         'iconU':mark_safe(iconU),
-
-#     })  
-    
+#     })

@@ -25,7 +25,7 @@
 
 
 
-      <!-- Our  Glasses section -->
+      <!-- Our  Products section -->
       <div class="glasses">
             <div class="container">
                <div class="card-deck">
@@ -51,7 +51,6 @@
             </div>
          </div>
          <br>
-         <!-- end Our  Glasses section -->
       <br>
       <script>
          function getProducto(producto){
@@ -59,6 +58,8 @@
             const productosApi = axios.create({
   baseURL: "http://127.0.0.1:8000/api/v1/productos",
 });
+const csrftoken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+productosApi.defaults.headers.common['X-CSRFToken'] = csrftoken;
 if (id_producto){
    async function getProducto(id_producto) {
   const hi = await productosApi.delete(`/${id_producto}`);
