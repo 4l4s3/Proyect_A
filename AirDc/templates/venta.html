@@ -22,8 +22,16 @@
                   <button style="background-color: #7fbfff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 15px; border-radius: 10px;">Enviar</button>
                
                </form>
-              
+              <br>
             </center>
+            {% for msg in messages %}
+            <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                {{msg}}
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+            {% endfor %}
             <div class="card-deck">
                {% if producto|length >= 1 %}
                {% for productos in producto %}

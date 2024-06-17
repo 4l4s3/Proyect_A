@@ -2,7 +2,24 @@
 {% block content %}
 <br>
       <!-- contact section -->
+      
       <div id="contact" class="contact">
+         {% for msg in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong>Listo!</strong> {{msg}}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+      {% endfor %}
+      {% for msg1 in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong>Listo!</strong> {{msg1}}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+      {% endfor %}
          <div class="container">
             <div class="row">
                <div class="col-md-6">
@@ -13,16 +30,16 @@
                            <h3>Contáctanos</h3>
                         </div>
                         <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Asunto" type="type" name="asunto"> 
+                           <input class="contactus" placeholder="Asunto" type="type" name="asunto" required> 
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Número telefónico" type="type" name="telefono"> 
+                           <input class="contactus" placeholder="Número telefónico" type="type" name="telefono" required> 
                         </div>
                         <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="email">                          
+                           <input class="contactus" placeholder="Email" type="type" name="email" required>                          
                         </div>
                         <div class="col-md-12">
-                           <input class="contactusmess" placeholder="Mensaje" type="type" name="mensaje">
+                           <input class="contactusmess" placeholder="Mensaje" type="type" name="mensaje" required>
                         </div>
                         <div class="col-md-12">
                            <input type="submit" class="send_btn" value="Enviar">
