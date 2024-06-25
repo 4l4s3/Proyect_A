@@ -44,7 +44,7 @@ body {
      font-family: 'Poppins', sans-serif;
      line-height: 1.80857;
      font-weight: normal;
-     background-color: lightblue;
+     background-color: #6fa9ff;
 }
 
 a {
@@ -507,7 +507,7 @@ button {
 /** Our  Glasses section **/
 
 .glasses {
-     background: #dfe7ff;
+     background: #d6f7ff;
      margin-top: 10px;
 }
 
@@ -903,7 +903,7 @@ ul.location_icon li a {
     margin-left: 25px;
     font-size: 24px;
     width: 10%;
-    background-color: cyan;
+    background-color: #62b8e1;
     border-radius: 93px;
    }
 
@@ -919,7 +919,7 @@ ul.location_icon li a {
    }
 
    .btnresponsive{
-     background-color: #03cafc;
+     background-color: #62b8e1;;
      color: white;
      margin-top: 100px;
    }
@@ -932,8 +932,8 @@ ul.location_icon li a {
    }
    
    .sidebar a:hover:not(.active) {
-     background-color: #000000;
-     color: rgb(0, 183, 255);
+     background-color: #bbb7b7;
+     color: rgb(0 102 255);
    }
    
    @media screen and (max-width: 767px) {

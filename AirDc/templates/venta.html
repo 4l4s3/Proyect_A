@@ -65,7 +65,7 @@
                      <div class="card-body">
                         <h5 class="card-title">{{ productos.nombre_producto }}</h5>
                         <p class="card-text description" style="height:72px;">{{ productos.descript_producto }}</p>
-                        <p class="card-text description" style="height:72px;"><b>Precio: </b> {{ productos.precio_producto }}</p>
+                        <p class="card-text description" style="height:72px;"><b>Precio: $</b> {{ productos.precio_producto }}</p>
                         <a href="{% url 'venta' id=productos.id %}" class="btn btn-primary mt-2">Ver</a>
                         <a href="{% url 'carrito:agregar' producto_id=productos.id %}" class="btn btn-primary mt-2">Añadir al carrito</a>
                      </div>
