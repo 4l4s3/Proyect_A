@@ -117,8 +117,9 @@ def registrarse(request):
         # Validar el formulario primero
         form = crearFormUsuario(request.POST)
         if form.is_valid():
+            messages.success(request, "El usuario ha sido registrado, revise su correo electrónico para verificarlo.")    
             inactive_user = send_verification_email(request,form)
-    return render(request, 'iniciar_sesion.html', {'form': form, 'page': page})     
+    return render(request, 'iniciar_sesion.html', {'form': form, 'page': page}) 
   
   
   
