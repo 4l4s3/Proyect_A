@@ -1040,7 +1040,7 @@ ul.location_icon li a {
   margin-top:7%;
   margin-left: 70%;
   display: none;
-  z-index: 999999;
+  z-index: 999;
 }
 
 #carrocompra th, #carrocompra td {
