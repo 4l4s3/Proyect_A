@@ -41,7 +41,6 @@
           ///////////   Este es su botón de Botón de pago ePayco   ///////////
          ===================================================================== -->
          {% if request.session.carrito.items %}
-             {% for key, value in request.session.carrito.items %}
          <form>
             <script src='https://checkout.epayco.co/checkout.js'
                 data-epayco-key='204733c2d3a62ca7aa4b68058e0749f7' 
@@ -50,8 +49,10 @@
                 data-epayco-tax='0.00'  
                 data-epayco-tax-ico='0.00'               
                 data-epayco-tax-base='{{importe_total_carrito}}'
+                {% for key, value in request.session.carrito.items %}
                 data-epayco-name={{value.nombre}}
                 data-epayco-description={{value.nombre}}
+                {%endfor%}
                 data-epayco-currency='cop'    
                 data-epayco-country='CO' 
                 data-epayco-test='true' 
@@ -61,9 +62,6 @@
                 data-epayco-button='https://multimedia.epayco.co/dashboard/btns/btn2.png'> 
             </script> 
         </form> <!-- ================================================================== -->
-        {% endfor %}
-    {% else %}
-        
     {% endif %}
 </table>
 </script>
