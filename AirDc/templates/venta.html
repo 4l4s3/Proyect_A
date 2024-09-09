@@ -67,7 +67,9 @@
                         <p class="card-text description" style="height:72px;">{{ productos.descript_producto }}</p>
                         <p class="card-text description" style="height:72px;"><b>Precio: $</b> {{ productos.precio_producto }}</p>
                         <a href="{% url 'venta' id=productos.id %}" class="btn btn-primary mt-2">Ver</a>
+                        {% if request.user.is_authenticated %}
                         <a href="{% url 'carrito:agregar' producto_id=productos.id %}" class="btn btn-primary mt-2">Añadir al carrito</a>
+                        {%endif%}
                      </div>
                     </div>
                   </div>
