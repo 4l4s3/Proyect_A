@@ -25,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('AirDc.urls')),
     path('carrito/',include('carrito.urls')),
-
 ]
 
 if settings.DEBUG: 

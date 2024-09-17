@@ -23,7 +23,7 @@ class formProducto(forms.ModelForm):
     class Meta:
         model = Producto
         fields = '__all__'
-        fields_order = ['nombre_producto', 'descript_producto', 'img_producto', 'valor_compra', 'precio_producto', 'encargado', 'activo']
+        fields_order = ['nombre_producto', 'descript_producto', 'img_producto', 'valor_compra', 'precio_producto','activo']
 
     def __init__(self, *args, **kwargs):
         super(formProducto, self).__init__(*args, **kwargs)
@@ -36,7 +36,6 @@ class formProducto(forms.ModelForm):
         self.fields['img_producto'].widget.attrs.update({'class': 'form-control-file'})
         self.fields['valor_compra'].widget.attrs.update({'placeholder': 'Valor de Compra'})
         self.fields['precio_producto'].widget.attrs.update({'placeholder': 'Precio del Producto'})
-        self.fields['encargado'].widget.attrs.update({'placeholder': 'Encargado del Producto'})
         self.fields['activo'].widget = forms.RadioSelect(choices=[(True, 'Activo'), (False, 'Inactivo')])
         self.fields['activo'].empty_label = None  # Para que no haya una opción vacía
     

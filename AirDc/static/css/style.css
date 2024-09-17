@@ -262,6 +262,7 @@ button {
      clear: both;
      padding: 23px 25px !important;
      border-radius: 64px;
+     z-index:1;
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link {
@@ -955,7 +956,6 @@ ul.location_icon li a {
           display: none;
           opacity: 0.0;
           position: fixed;
-          z-index: 0;
           top: 0px;
           left: 0px;
           margin-top: 0;
@@ -1040,7 +1040,7 @@ ul.location_icon li a {
   margin-top:7%;
   margin-left: 70%;
   display: none;
-  z-index: 999;
+  z-index: 100;
 }
 
 #carrocompra th, #carrocompra td {
@@ -1081,3 +1081,27 @@ ul.location_icon li a {
      margin-left: 20%;
 }
 
+.lista-pedidos {
+     list-style: none;
+     padding: 0;
+     text-align: center;
+     background-color: white;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+     margin: 20px auto; /* Centra la lista horizontalmente */
+   }
+   
+
+   .lista-pedidos li {
+     display: list-item;
+     background-color: #e7fbff;
+     padding: 15px 25px;
+     margin: 10px;
+     border-radius: 5px;
+   }
+   
+
+   .lista-pedidos li b {
+     margin-bottom: 5px;
+   }

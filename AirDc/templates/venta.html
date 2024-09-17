@@ -35,6 +35,7 @@
             <div class="card-deck">
                {% if producto|length >= 1 %}
                {% for productos in producto %}
+               {% if productos.activo %}
                {% if search %}
                <div class="col-md-6 col-lg-4 mt-4">
                   <div class="card" style="width: 23rem;">
@@ -75,7 +76,7 @@
                   </div>
                </div>
            {% endif %}
-           
+                {%endif%}
                {% endfor %}
                {% else %}
                <div>

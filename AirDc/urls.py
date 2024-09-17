@@ -1,4 +1,5 @@
 from django.urls import path,include
+from django.urls import path
 from . import views
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
@@ -16,6 +17,8 @@ urlpatterns = [
     path('verification/', include('verify_email.urls')),
     path('iniciar_sesion/',views.iniciar_sesion, name='iniciar'),
     path('form-producto/<int:id>/', views.formProduct, name='formProducto'),
+    path('historial/', views.historial_pedidos, name='historial'),
+    path('pago/response/', views.pago_response, name='pago_response'),
     path('api/v1/', include(router.urls)),
     path('docs/', include_docs_urls(title='Credential API')),
 ]

@@ -31,6 +31,7 @@
             <div class="container">
                <div class="card-deck">
                   {% for productos in producto %}
+                     {% if productos.activo %}
                   <div class="col-md-6 col-lg-4 mt-4">
                      <div class="card" style="width: 23rem;">
                       <div class="card-block">
@@ -47,7 +48,8 @@
                        </div>
                      </div>
                   </div>
-                  {% endfor %}
+                  {%endif%}
+               {% endfor %}
                </div>
             </div>
          </div>

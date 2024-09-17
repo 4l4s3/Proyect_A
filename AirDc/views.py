@@ -1,7 +1,13 @@
+from decimal import Decimal
+from django.utils import timezone
+from datetime import timedelta,datetime
+import os
 import random
 from django.urls import reverse
 from django.shortcuts import render,redirect
 from django.utils.safestring import mark_safe
+from Administración import urls
+from carrito.context_processor import importe_total_carrito
 from .forms import crearFormUsuario
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
@@ -14,6 +20,12 @@ from .models import Producto
 from rest_framework import viewsets
 from .serializer import productos_serializer
 from django.contrib import messages
+from django.shortcuts import render
+from .models import Pedido
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.decorators.http import require_POST
+import requests
 # Create your views here.
 iconF = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -158,10 +170,41 @@ class productos_view(viewsets.ModelViewSet):
   serializer_class = productos_serializer
   queryset = Producto.objects.all()
 
-# @login_required(login_url='login')
-# def otra(request): 
-#     return render(request, 'otra.html',{
-#         'iconI': mark_safe(iconI),
-#         'iconF':mark_safe(iconF),
-#         'iconU':mark_safe(iconU),
-#     })
+def historial_pedidos(request):
+     if request.user.username == "administrador":
+      pedidos = Pedido.objects.filter()
+      return render(request, 'historial_pedidos.html', {'pedidos': pedidos})
+     else:
+       pedidos = Pedido.objects.filter(usuario=request.user)
+       return render(request, 'historial_pedidos.html', {'pedidos': pedidos})
+
+def pago_response(request):
+    # Obtener el usuario actual (asumiendo que el usuario está autenticado)
+    usuario = request.user
+
+    # Obtener el importe total del carrito con manejo de errores
+    importe_total = request.session.get('importe_total_carrito')
+
+    if importe_total is None:
+        # Manejar el caso en que el valor no está en la sesión
+        importe_total = 0.00  # Asignar un valor por defecto
+
+    # Verificar el tipo de dato y convertir si es necesario
+    if isinstance(importe_total, set):
+        # Si es un conjunto, tomar el primer elemento (si es un número)
+        importe_total = float(list(importe_total)[0])
+    elif not isinstance(importe_total, (int, float)):
+        # Si no es un número, manejar el error
+        raise ValueError("El valor de importe_total_carrito no es un número válido")
+
+    # Crear un nuevo pedido
+    pedido = Pedido.objects.create(
+        usuario=usuario,
+        total=importe_total,
+        fecha_pedido=timezone.now() + timedelta(hours=0, minutes=0)  # Fecha y hora actual
+    )
+
+    # Limpiar el carrito de la sesión
+    request.session['carrito'] = {}
+
+    return render(request, 'pago_confirmado.html')

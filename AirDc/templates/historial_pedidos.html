@@ -1,0 +1,17 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+<br><br><br>
+<br><br><br>
+<center><h1>Historial de Pedidos</h1><center>
+<ul class="lista-pedidos">
+    {% for pedido in pedidos %}
+    <li>
+        <b>Usuario:</b> {{ pedido.usuario }}
+        <b>Fecha:</b> {{ pedido.fecha_pedido }} UCT
+        <b>Total:</b> ${{ pedido.total }}
+        <b>Estado:</b> {{ pedido.estado }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
